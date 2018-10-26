@@ -15,10 +15,11 @@ func Min(a, b int) int {
 }
 
 func maxIncreaseKeepingSkyline(grid [][]int) int {
-	numX := len(grid[0])
-	numY := len(grid)
-	eastSkyline := make([]int, numY)
-	northSkyline := make([]int, numX)
+	if len(grid) == 0 {
+		return 0
+	}
+	eastSkyline := make([]int, len(grid))
+	northSkyline := make([]int, len(grid[0]))
 
 	for y := range grid {
 		for x, height := range grid[y] {
@@ -30,10 +31,7 @@ func maxIncreaseKeepingSkyline(grid [][]int) int {
 	addedHeight := 0
 	for y := range grid {
 		for x, height := range grid[y] {
-			newHeight := Min(eastSkyline[y], northSkyline[x])
-			if newHeight > height {
-				addedHeight += newHeight - height
-			}
+			addedHeight += Min(eastSkyline[y], northSkyline[x]) - height
 		}
 	}
 	return addedHeight

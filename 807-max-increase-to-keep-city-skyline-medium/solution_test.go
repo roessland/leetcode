@@ -12,3 +12,8 @@ func TestMaxIncreaseKeepingSkyline(t *testing.T) {
 	}
 	assert.Equal(t, 35, maxIncreaseKeepingSkyline(grid))
 }
+
+func TestEmpty(t *testing.T) {
+	assert.Equal(t, 0, maxIncreaseKeepingSkyline([][]int{}))
+	assert.Equal(t, 0, maxIncreaseKeepingSkyline([][]int{{}, {}}))
+}
